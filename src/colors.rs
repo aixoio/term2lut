@@ -17,4 +17,12 @@ impl Color {
             blue: color.2,
         }
     }
+
+    pub fn convert_to_decimal(&self) -> (f64, f64, f64) {
+        (
+            self.red as f64 / 255.0,
+            self.green as f64 / 255.0,
+            self.blue as f64 / 255.0,
+        )
+    }
 }
