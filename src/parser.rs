@@ -57,7 +57,7 @@ pub struct ColorPalletVHS {
 }
 
 fn parse_hex_color(s: &str) -> Result<(u8, u8, u8), std::num::ParseIntError> {
-    let hex = s.strip_prefix("0x").unwrap_or(s);
+    let hex = s.strip_prefix("#").unwrap_or(s);
 
     let value = u32::from_str_radix(hex, 16)?;
 
@@ -69,7 +69,7 @@ fn parse_hex_color(s: &str) -> Result<(u8, u8, u8), std::num::ParseIntError> {
 }
 
 impl ColorPalletVHS {
-    pub fn load_file_to_color_pallet(path: String) -> Result<ColorPallet, Box<dyn error::Error>> {
+    pub fn load_file_to_color_pallet(path: &str) -> Result<ColorPallet, Box<dyn error::Error>> {
         let data = fs::read_to_string(path)?;
         let vhs_pallet: ColorPalletVHS = serde_json::from_str(&data)?;
         Ok(vhs_pallet.convert()?)
