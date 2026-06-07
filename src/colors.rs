@@ -25,4 +25,13 @@ impl Color {
             self.blue as f64 / 255.0,
         )
     }
+
+    pub fn distance(&self, other: &Color) -> f64 {
+        let decimal = self.convert_to_decimal();
+        let other_decimal = other.convert_to_decimal();
+
+        (decimal.0 - other_decimal.0).powf(2.0)
+            + (decimal.1 - other_decimal.1).powf(2.0)
+            + (decimal.2 - other_decimal.2).powf(2.0)
+    }
 }
