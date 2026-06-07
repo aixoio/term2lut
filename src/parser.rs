@@ -3,6 +3,7 @@ use std::{error, fs};
 use crate::colors::Color;
 use serde::Deserialize;
 
+#[derive(Debug)]
 pub struct ColorPallet {
     pub name: String,
     pub black: Color,
