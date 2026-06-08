@@ -13,10 +13,14 @@ impl LUT {
     pub fn generate_lut_to_string(&self) -> String {
         let mut result = String::new();
 
-        result.push_str(&format!("TITLE \"{}\"\n", self.pallet.name));
-        result.push_str(&format!("LUT_3D_SIZE \"{}\"\n", self.size));
+        result.push_str("#Created by: term2lut\n");
+        result.push_str(&format!("TITLE \"{}\"\n\n", self.pallet.name));
+        result.push_str("#LUT size\n");
+        result.push_str(&format!("LUT_3D_SIZE {}\n\n", self.size));
+        result.push_str("#data domain\n");
         result.push_str("DOMAIN_MIN 0.0 0.0 0.0\n");
-        result.push_str("DOMAIN_MAX 1.0 1.0 1.0\n");
+        result.push_str("DOMAIN_MAX 1.0 1.0 1.0\n\n");
+        result.push_str("#LUT data points\n");
 
         for b in 0..self.size {
             for g in 0..self.size {
