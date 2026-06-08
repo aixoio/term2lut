@@ -1,6 +1,6 @@
 use std::{env, process};
 
-use term2lut::parser::ColorPalletVHS;
+use term2lut::{lut::LUT, parser::ColorPalletVHS};
 
 fn main() {
     let args: Vec<String> = env::args().collect();
@@ -21,5 +21,5 @@ fn main() {
             process::exit(1);
         });
 
-    println!("{:?}", color_pallet);
+    let lut = LUT::new(33, color_pallet);
 }

@@ -5,6 +5,20 @@ pub struct Color {
     pub blue: u8,
 }
 
+fn decimal_to_u8(x: f64) -> u8 {
+    let mut x = x;
+
+    if x < 0.0 {
+        x = 0.0;
+    }
+
+    if x > 1.0 {
+        x = 1.0;
+    }
+
+    (x * 255.0).round() as u8
+}
+
 impl Color {
     pub fn new(red: u8, green: u8, blue: u8) -> Color {
         Color { red, green, blue }
@@ -15,6 +29,14 @@ impl Color {
             red: color.0,
             green: color.1,
             blue: color.2,
+        }
+    }
+
+    pub fn new_from_decimal_tuple(decimal: (f64, f64, f64)) -> Color {
+        Color {
+            red: decimal_to_u8(decimal.0),
+            green: decimal_to_u8(decimal.1),
+            blue: decimal_to_u8(decimal.2),
         }
     }
 
