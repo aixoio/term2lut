@@ -1,4 +1,4 @@
-use std::{env, process};
+use std::{env, fs, process};
 
 use term2lut::{lut::LUT, parser::ColorPalletVHS};
 
@@ -22,4 +22,15 @@ fn main() {
         });
 
     let lut = LUT::new(33, color_pallet);
+    let lut_string = lut.generate_lut_to_string();
+
+    fs::write(out_file_path, lut_string).unwrap_or_else(|err| {
+        eprintln!("Writing error: {err}");
+        process::exit(1);
+    });
+
+    println!(
+        "3D LUT generated {}x{}x{} and saved in {out_file_path}",
+        lut.size, lut.size, lut.size
+    );
 }
