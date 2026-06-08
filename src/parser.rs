@@ -101,3 +101,46 @@ impl ColorPalletVHS {
         Ok(color_pallet)
     }
 }
+
+impl ColorPallet {
+    pub fn pallet_to_array(&self) -> [&Color; 18] {
+        let array = [
+            &self.black,
+            &self.red,
+            &self.green,
+            &self.blue,
+            &self.purple,
+            &self.cyan,
+            &self.white,
+            &self.bright_black,
+            &self.bright_red,
+            &self.bright_green,
+            &self.bright_blue,
+            &self.bright_purple,
+            &self.bright_cyan,
+            &self.bright_white,
+            &self.background,
+            &self.foreground,
+            &self.cursor,
+            &self.selection,
+        ];
+
+        array
+    }
+
+    pub fn closest_pallet_color(&self, target: &Color) -> &Color {
+        let mut best_color = &self.black;
+        let mut best_dist = 999999999999.99;
+
+        for color in self.pallet_to_array() {
+            let dist = color.distance(target);
+
+            if dist < best_dist {
+                best_dist = dist;
+                best_color = color;
+            }
+        }
+
+        best_color
+    }
+}
