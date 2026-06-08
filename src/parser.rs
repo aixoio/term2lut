@@ -9,6 +9,7 @@ pub struct ColorPallet {
     pub black: Color,
     pub red: Color,
     pub green: Color,
+    pub yellow: Color,
     pub blue: Color,
     pub purple: Color,
     pub cyan: Color,
@@ -16,6 +17,7 @@ pub struct ColorPallet {
     pub bright_black: Color,
     pub bright_red: Color,
     pub bright_green: Color,
+    pub bright_yellow: Color,
     pub bright_blue: Color,
     pub bright_purple: Color,
     pub bright_cyan: Color,
@@ -32,6 +34,7 @@ pub struct ColorPalletVHS {
     black: String,
     red: String,
     green: String,
+    yellow: String,
     blue: String,
     purple: String,
     cyan: String,
@@ -42,6 +45,8 @@ pub struct ColorPalletVHS {
     bright_red: String,
     #[serde(rename = "brightGreen")]
     bright_green: String,
+    #[serde(rename = "brightYellow")]
+    bright_yellow: String,
     #[serde(rename = "brightBlue")]
     bright_blue: String,
     #[serde(rename = "brightPurple")]
@@ -81,6 +86,7 @@ impl ColorPalletVHS {
             black: Color::new_from_tuple(parse_hex_color(&self.black)?),
             red: Color::new_from_tuple(parse_hex_color(&self.red)?),
             green: Color::new_from_tuple(parse_hex_color(&self.green)?),
+            yellow: Color::new_from_tuple(parse_hex_color(&self.yellow)?),
             blue: Color::new_from_tuple(parse_hex_color(&self.blue)?),
             purple: Color::new_from_tuple(parse_hex_color(&self.purple)?),
             cyan: Color::new_from_tuple(parse_hex_color(&self.cyan)?),
@@ -88,6 +94,7 @@ impl ColorPalletVHS {
             bright_black: Color::new_from_tuple(parse_hex_color(&self.bright_black)?),
             bright_red: Color::new_from_tuple(parse_hex_color(&self.bright_red)?),
             bright_green: Color::new_from_tuple(parse_hex_color(&self.bright_green)?),
+            bright_yellow: Color::new_from_tuple(parse_hex_color(&self.bright_yellow)?),
             bright_blue: Color::new_from_tuple(parse_hex_color(&self.bright_blue)?),
             bright_purple: Color::new_from_tuple(parse_hex_color(&self.bright_purple)?),
             bright_cyan: Color::new_from_tuple(parse_hex_color(&self.bright_cyan)?),
@@ -103,11 +110,12 @@ impl ColorPalletVHS {
 }
 
 impl ColorPallet {
-    pub fn pallet_to_array(&self) -> [&Color; 18] {
+    pub fn pallet_to_array(&self) -> [&Color; 20] {
         let array = [
             &self.black,
             &self.red,
             &self.green,
+            &self.yellow,
             &self.blue,
             &self.purple,
             &self.cyan,
@@ -115,6 +123,7 @@ impl ColorPallet {
             &self.bright_black,
             &self.bright_red,
             &self.bright_green,
+            &self.bright_yellow,
             &self.bright_blue,
             &self.bright_purple,
             &self.bright_cyan,
