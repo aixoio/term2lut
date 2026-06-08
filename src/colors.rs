@@ -40,6 +40,10 @@ impl Color {
         }
     }
 
+    pub fn new_from_decimal(dr: f64, dg: f64, db: f64) -> Color {
+        Color::new_from_decimal_tuple((dr, dg, db))
+    }
+
     pub fn convert_to_decimal(&self) -> (f64, f64, f64) {
         (
             self.red as f64 / 255.0,
