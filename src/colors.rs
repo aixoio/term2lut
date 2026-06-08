@@ -6,15 +6,7 @@ pub struct Color {
 }
 
 fn decimal_to_u8(x: f64) -> u8 {
-    let mut x = x;
-
-    if x < 0.0 {
-        x = 0.0;
-    }
-
-    if x > 1.0 {
-        x = 1.0;
-    }
+    let x = x.clamp(0.0, 1.0);
 
     (x * 255.0).round() as u8
 }
