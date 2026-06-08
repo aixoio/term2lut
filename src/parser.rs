@@ -1,4 +1,4 @@
-use std::{error, fs};
+use std::{error, f64, fs};
 
 use crate::colors::Color;
 use serde::Deserialize;
@@ -111,7 +111,7 @@ impl ColorPalletVHS {
 
 impl ColorPallet {
     pub fn pallet_to_array(&self) -> [&Color; 20] {
-        let array = [
+        [
             &self.black,
             &self.red,
             &self.green,
@@ -132,14 +132,12 @@ impl ColorPallet {
             &self.foreground,
             &self.cursor,
             &self.selection,
-        ];
-
-        array
+        ]
     }
 
     pub fn closest_pallet_color(&self, target: &Color) -> &Color {
         let mut best_color = &self.black;
-        let mut best_dist = 999999999999.99;
+        let mut best_dist = f64::INFINITY;
 
         for color in self.pallet_to_array() {
             let dist = color.distance(target);
