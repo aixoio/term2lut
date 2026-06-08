@@ -151,3 +151,18 @@ impl ColorPallet {
         best_color
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_parse_hex_color() {
+        let hex_color = "#ff00ff";
+        let color = (255, 0, 255);
+
+        let parserd_hex = parse_hex_color(hex_color).unwrap();
+
+        assert_eq!(color, parserd_hex);
+    }
+}
